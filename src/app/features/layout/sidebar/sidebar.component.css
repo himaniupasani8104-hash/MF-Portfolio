@@ -1,0 +1,297 @@
+.sidebar-dark {
+  height: 100%;
+  background-color: #1A2138; /* Sleeker dark slate from your image */
+  color: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  z-index: 1000; /* CRITICAL UPDATE: Forces sidebar to the front layer */
+}
+
+/* --- LOGO SECTION --- */
+.logo-section {
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Faint separator line */
+}
+
+.logo-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  background: #3B82F6;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%; /* Circle shape matching the design */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.logo-text h2 { 
+  margin: 0; 
+  font-size: 18px; 
+  font-weight: 600; 
+  color: white; 
+}
+
+.hamburger-btn {
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* --- NAVIGATION MENU --- */
+.nav-menu {
+  flex: 1;
+  overflow-y: auto; /* SCROLLING RE-ENABLED: Main sidebar will now scroll! */
+  overflow-x: hidden;
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-menu::-webkit-scrollbar { 
+  width: 0px; 
+}
+
+.nav-item {
+  padding: 14px 24px;
+  color: #A0A5BA; /* Muted gray text */
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* CRITICAL: Forces perfect left alignment */
+  gap: 16px;
+  transition: all 0.2s;
+}
+
+.nav-item:hover { 
+  color: white; 
+  background: rgba(255, 255, 255, 0.05); 
+}
+
+/* Cleaner active state matching the new design */
+.nav-item.active { 
+  color: white; 
+  font-weight: 600; 
+}
+
+.nav-item .icon { 
+  font-size: 18px; 
+  width: 24px; /* CRITICAL: Fixed width ensures the text next to it forms a perfect column */
+  display: flex;
+  justify-content: center;
+  opacity: 0.8; 
+}
+
+/* --- FLYOUT MENU STYLES --- */
+
+/* 1. The wrapper acts as the anchor point */
+.nav-item-wrapper {
+  position: relative;
+}
+
+/* 2. The flyout box */
+.flyout-menu {
+  display: flex; /* CHANGED: Angular *ngIf handles visibility now */
+  position: fixed; 
+  left: 260px; /* Pushes it completely to the right edge of the sidebar */
+  
+  width: 220px;
+  background-color: #24304D; /* Lighter shade of blue to stand out */
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.25); /* Drop shadow so it floats */
+  flex-direction: column;
+  z-index: 1000; /* Ensure it sits ON TOP of the dashboard content */
+  border-radius: 0 8px 8px 0; /* Round the right corners */
+  
+  /* Make it scrollable */
+  max-height: 350px; /* Stops the box before it hits the bottom of most screens */
+  overflow-y: auto; /* Adds a vertical scrollbar */
+  overflow-x: hidden;
+}
+
+/* REMOVED: .nav-item-wrapper:hover .flyout-menu. Angular handles this! */
+
+/* 4. Style the individual links inside the flyout */
+.flyout-item {
+  padding: 12px 20px;
+  color: #A0A5BA;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.flyout-item:last-child {
+  border-bottom: none;
+}
+
+/* Highlight blue on hover, just like the Figma design */
+.flyout-item:hover {
+  background-color: #3B82F6;
+  color: white;
+}
+
+/* Custom Sleek Scrollbar for the Flyout */
+.flyout-menu::-webkit-scrollbar {
+  width: 5px;
+}
+
+.flyout-menu::-webkit-scrollbar-thumb {
+  background-color: #3B82F6; /* Matches your blue accent */
+  border-radius: 4px;
+}
+.flyout-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* --- NESTED SUB-FLYOUT MENU STYLES --- */
+
+.sub-item-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 5. The Sub-Sub Flyout Box */
+.sub-flyout-menu {
+  display: flex;
+  position: fixed; 
+  /* Left is 480px because Sidebar (260px) + Main Flyout (220px) = 480px */
+  left: 480px; 
+  
+  width: 220px;
+  background-color: #24304D; 
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.25); 
+  flex-direction: column;
+  z-index: 1001; /* Sits slightly higher than the first flyout */
+  border-radius: 0 8px 8px 0; 
+  border-left: 1px solid rgba(255, 255, 255, 0.05); /* Slight separation line */
+}
+
+/* --- INVITE FRIEND MODAL STYLES --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2000; /* Ensure it stays above everything */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container {
+  background-color: #ffffff;
+  width: 500px;
+  border-radius: 2px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  color: #333; /* Ensure text inside the modal is dark, not inherited from sidebar */
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #b3b3b3;
+  font-weight: normal;
+}
+
+.modal-header .close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #d3d3d3;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.form-group {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  text-align: right;
+  font-size: 14px;
+  color: #666;
+}
+
+.text-danger {
+  color: #d9534f;
+}
+
+.form-control {
+  padding: 8px 12px;
+  border: 1px solid #e5e5e5;
+  border-radius: 2px;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #333; /* Input text color */
+}
+
+.form-control:focus {
+  border-color: #3B82F6;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.btn-close {
+  background-color: #e8e8e8;
+  color: #555;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-invite {
+  background-color: #34a853; /* Matching standard green */
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 14px;
+}

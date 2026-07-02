@@ -1,0 +1,479 @@
+.profile-page {
+  background: #ffffff;
+  padding: 18px 16px 40px;
+}
+
+.page-title h2 {
+  margin: 0 0 12px;
+  font-size: 24px;
+  font-weight: 400;
+  color: #6B7280;
+}
+
+.page-title h2 span {
+  font-size: 14px;
+  color: #9CA3AF;
+}
+
+.breadcrumb {
+  background: #F8FAFC;
+  border: 1px solid #EEF2F7;
+  padding: 12px;
+  font-size: 13px;
+  color: #8A94A6;
+  margin-bottom: 28px;
+}
+
+.breadcrumb span {
+  margin: 0 8px;
+}
+
+.profile-card {
+  border: 1px solid #93C5FD;
+  background: white;
+}
+
+.profile-card-header {
+  background: #3B82F6;
+  color: white;
+  padding: 10px 14px;
+  font-size: 16px;
+}
+
+/* --- STEPPER STYLES --- */
+.steps {
+  display: flex;
+  justify-content: space-around;
+  padding: 28px 20px;
+  border-bottom: 14px solid #F8FAFC;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #A8B0B8;
+}
+
+.step span {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #F3F4F6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+/* Default active state */
+.step.active span {
+  background: #EEF2F7;
+  color: #64748B;
+}
+
+/* Completed (Yellow Bubble) */
+.step.completed span {
+  background: #EAB308;
+  color: white;
+  font-size: 16px;
+}
+
+/* Active Form Section (Teal Bubble) */
+.step.active-teal span {
+  background: #14B8A6;
+  color: white;
+}
+.step.active-teal p {
+  color: #14B8A6;
+}
+
+.step p {
+  margin: 0;
+  font-size: 15px;
+}
+
+/* Progress bar */
+.progress-bar-container {
+  height: 16px;
+  background-color: #F8FAFC;
+  width: 100%;
+}
+.progress-bar-fill {
+  height: 100%;
+  background-color: #4ADE80;
+  background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+  background-size: 1rem 1rem;
+  transition: width 0.3s ease;
+}
+
+/* --- FORM ROW & LAYOUT --- */
+.profile-form {
+  padding: 32px 40px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  align-items: flex-start; /* Changed to keep label aligned with first input row even if inputs wrap */
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.form-row.align-top {
+  align-items: flex-start;
+}
+
+.form-row label {
+  text-align: right;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 500;
+  padding-top: 10px; /* Adjusted padding to perfectly align text with the 38px high inputs */
+}
+
+.form-row label b {
+  color: #EF4444;
+}
+
+.form-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.form-controls input[type="text"],
+.form-controls input[type="email"],
+.form-controls input[type="date"],
+.form-controls input[type="password"],
+.form-controls select,
+.form-controls textarea {
+  height: 38px;
+  border: 1px solid #E5E7EB;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #475569;
+  outline: none;
+  background-color: #fff;
+  transition: border-color 0.2s ease;
+}
+
+.form-controls input:focus,
+.form-controls select:focus,
+.form-controls textarea:focus {
+  border-color: #3B82F6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.main-input {
+  width: 340px;
+}
+
+.wide {
+  width: 100%;
+  max-width: 600px;
+}
+
+.date-input {
+  width: 160px;
+}
+
+.readonly-input {
+  background-color: #F3F4F6 !important;
+  color: #6B7280 !important;
+  cursor: not-allowed;
+}
+
+.textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.radio-label {
+  display: flex !important;
+  align-items: center;
+  gap: 6px;
+  text-align: left !important;
+  padding-top: 0 !important;
+  color: #475569 !important;
+  cursor: pointer;
+}
+
+/* --- INPUT ICONS --- */
+.input-icon-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px; 
+}
+.input-icon-wrapper input {
+  width: 100%;
+  padding-right: 35px !important;
+}
+.input-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9CA3AF;
+  cursor: pointer;
+}
+
+/* --- UPLOAD SECTION FIXES --- */
+.upload-controls {
+  align-items: flex-start;
+  gap: 40px;
+}
+.file-input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.file-input {
+  padding: 5px 0;
+}
+.file-input-wrapper small {
+  margin-top: 6px;
+  color: #94A3B8;
+  font-size: 12px;
+}
+.logo-preview {
+  text-align: center;
+}
+.logo-preview strong {
+  display: block;
+  font-size: 18px;
+  color: #047857;
+}
+.logo-preview strong span {
+  color: #15803D;
+}
+.logo-preview p {
+  margin: 4px 0;
+  font-size: 11px;
+  color: #475569;
+}
+.logo-preview a {
+  color: #EF4444;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.logo-preview a:hover {
+  color: #DC2626;
+}
+
+/* --- BUTTONS & FOOTER --- */
+.form-footer {
+  border-top: 1px solid #E5E7EB;
+  background: #F8FAFC;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.blue-btn,
+.continue-btn,
+.back-btn,
+.save-btn,
+.submit-btn {
+  border: none;
+  height: 38px;
+  padding: 0 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.blue-btn, .continue-btn {
+  background: #3B82F6;
+  color: white;
+}
+.blue-btn:hover, .continue-btn:hover {
+  background: #2563EB;
+}
+
+.back-btn {
+  background: #E5E7EB;
+  color: #4B5563;
+}
+.back-btn:hover {
+  background: #D1D5DB;
+}
+
+.save-btn {
+  background: #22C55E;
+  color: white;
+}
+.save-btn:hover {
+  background: #16A34A;
+}
+
+
+/* =========================================
+   NEW STEP 4 STYLES ADDED BELOW
+   ========================================= */
+
+.form-inline-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hint-text {
+  font-size: 13px;
+  color: #64748B;
+}
+
+.rich-textarea {
+  min-height: 120px;
+  background-color: #F8FAFC; /* Gives the WYSIWYG editor look */
+}
+
+.multi-select-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  max-width: 600px;
+}
+
+.select-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.select-group label {
+  text-align: left;
+  width: auto; /* overrides the 240px default from .form-row label */
+  padding-top: 0;
+}
+
+.right-align-group {
+  margin-left: auto;
+}
+
+.standard-select {
+  height: 38px;
+  border: 1px solid #E5E7EB;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #475569;
+  outline: none;
+  background-color: #fff;
+}
+
+/* Checkbox Grid Layout */
+.checkbox-grid-section {
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: 30px auto 0;
+  padding: 20px 0;
+  border-top: 1px solid #EEF2F7;
+}
+
+.checkbox-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 48%;
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space out text and checkbox */
+  font-size: 14px;
+  color: #475569;
+  cursor: pointer;
+}
+
+.custom-checkbox .label-text {
+  flex-grow: 1;
+  text-align: left;
+  padding-right: 15px;
+}
+
+.custom-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.spacer-box {
+  visibility: hidden;
+  height: 20px;
+}
+
+.footer-centered {
+  justify-content: center;
+}
+
+/* Green Submit button specific for step 4 */
+.submit-btn {
+  background: #10B981;
+  color: white;
+}
+.submit-btn:hover {
+  background: #059669;
+}
+
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 900px) {
+  .steps {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .form-row label {
+    text-align: left;
+    padding-top: 0;
+  }
+  
+  .main-input,
+  .wide,
+  .input-icon-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .form-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  /* Step 4 responsive fixes */
+  .multi-select-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .right-align-group {
+    margin-left: 0;
+  }
+  
+  .checkbox-grid-section {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .checkbox-column {
+    width: 100%;
+  }
+  
+  .spacer-box {
+    display: none; /* remove spacing gap on mobile */
+  }
+}

@@ -1,0 +1,12 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  font-family: 'Inter', sans-serif; /* Standard modern font */
+  background-color: #F7F9FC;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}

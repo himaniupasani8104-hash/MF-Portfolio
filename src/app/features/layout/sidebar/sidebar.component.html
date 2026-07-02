@@ -1,0 +1,199 @@
+<aside class="sidebar-dark">
+  
+  <div class="logo-section">
+    <div class="logo-left">
+      <div class="logo-icon">📈</div>
+      <div class="logo-text">
+        <h2>MF Admin</h2>
+      </div>
+    </div>
+    <button class="hamburger-btn">≡</button>
+  </div>
+
+  <nav class="nav-menu">
+    <a routerLink="/dashboard" routerLinkActive="active" class="nav-item"><span class="icon">⊞</span> Dashboard</a>
+    
+    <div class="nav-item-wrapper" (mouseenter)="openFlyout('invite', $event)" (mouseleave)="closeFlyout()">
+      <a routerLink="/invite" routerLinkActive="active" class="nav-item">
+        <span class="icon">👤</span> Invite IFAs and Earn
+      </a>
+      <div class="flyout-menu" *ngIf="hoveredMenu === 'invite'" [style.top.px]="flyoutTop">
+        <a href="javascript:void(0)" (click)="openInviteModal($event)" class="flyout-item">Invite IFAs and Earn</a>
+        <a routerLink="/referrals" class="flyout-item">My Referral List</a>
+        <a routerLink="/rewards" class="flyout-item">My Reward Points</a>
+      </div>
+    </div>
+
+    <a href="#" class="nav-item"><span class="icon">🌐</span> Book My Website</a>
+    
+    <div class="nav-item-wrapper" (mouseenter)="openFlyout('crm', $event)" (mouseleave)="closeFlyout()">
+      <a routerLink="/crm" routerLinkActive="active" class="nav-item">
+        <span class="icon">📇</span> My CRM
+      </a>
+      <div class="flyout-menu" *ngIf="hoveredMenu === 'crm'" [style.top.px]="flyoutTop">
+        <a routerLink="/crm/update-client" class="flyout-item">Update Client Profile</a>
+        <a routerLink="/crm/view-clients" class="flyout-item">View Client List</a>
+        <a routerLink="/crm/login-master" class="flyout-item">Client Login Master</a>
+        <a routerLink="/crm/family-master" class="flyout-item">Family Master</a>
+        <a routerLink="/crm/digidocs" class="flyout-item">My DigiDocs</a>
+        <a routerLink="/crm/remove-duplicates" class="flyout-item">Remove Duplicate Clients</a>
+        <a routerLink="/crm/sub-broker" class="flyout-item">Backoffice / Sub-Broker Master</a>
+        <a routerLink="/crm/wishes" class="flyout-item">B'day/Anniversary Wishes</a>
+        <a routerLink="/crm/wishes-list" class="flyout-item">B'day/Anniversary List</a>
+        <a routerLink="/crm/scheduler" class="flyout-item">Auto Portfolio Scheduler</a>
+        <a routerLink="/crm/risk-profile" class="flyout-item">Risk Profile Manager</a>
+      </div>
+    </div>
+
+    <a href="#" class="nav-item"><span class="icon">📈</span> My Business MIS</a>
+    
+    <div class="nav-item-wrapper" (mouseenter)="openFlyout('growBusiness', $event)" (mouseleave)="closeFlyout()">
+      <a routerLink="/grow-business" routerLinkActive="active" class="nav-item">
+        <span class="icon">🚀</span> Grow My Business
+      </a>
+      <div class="flyout-menu" *ngIf="hoveredMenu === 'growBusiness'" [style.top.px]="flyoutTop">
+        <div class="sub-item-wrapper" (mouseenter)="openSubFlyout('lead', $event)" (mouseleave)="closeSubFlyout()">
+          <a routerLink="/grow-business/lead-management" class="flyout-item" style="display: flex; justify-content: space-between;">
+            Lead Management <span style="opacity: 0.5;">▸</span>
+          </a>
+          <div class="sub-flyout-menu" *ngIf="hoveredSubMenu === 'lead'" [style.top.px]="subFlyoutTop">
+            <a routerLink="/grow-business/lead-management/create" class="flyout-item">Create Lead/Opportunity</a>
+            <a routerLink="/grow-business/lead-management/list" class="flyout-item">Lead List</a>
+          </div>
+        </div>
+        <a routerLink="/grow-business/references" class="flyout-item">My References</a>
+        <a routerLink="/grow-business/whatsapp" class="flyout-item">Whatsapp Marketing</a>
+        <a routerLink="/grow-business/elss-client" class="flyout-item">ELSS Client List</a>
+        <a routerLink="/grow-business/elss-lockin" class="flyout-item">ELSS Lock-in Free Valuation</a>
+        <a routerLink="/grow-business/non-elss" class="flyout-item">Non-ELSS Client List</a>
+        <a routerLink="/grow-business/non-sip" class="flyout-item">Non-SIP Client List</a>
+        <a routerLink="/grow-business/monthly-aum" class="flyout-item">Monthly AUM Growth Analysis</a>
+        <a routerLink="/grow-business/yearly-aum" class="flyout-item">Yearly AUM Growth Analysis</a>
+      </div>
+    </div>
+
+    <a href="#" class="nav-item"><span class="icon">🕒</span> Realised Gain Analysis</a>
+    
+    <div class="nav-item-wrapper" (mouseenter)="openFlyout('goalPlanner', $event)" (mouseleave)="closeFlyout()">
+      <a routerLink="/goal-planner" routerLinkActive="active" class="nav-item">
+        <span class="icon">🎯</span> Goal Planner
+      </a>
+      <div class="flyout-menu" *ngIf="hoveredMenu === 'goalPlanner'" [style.top.px]="flyoutTop">
+        <a routerLink="/goal-planner/create" class="flyout-item">Create goal planner</a>
+        <a routerLink="/goal-planner/settings" class="flyout-item">Goal planner settings</a>
+      </div>
+    </div>
+
+    <a href="#" class="nav-item"><span class="icon">💳</span> My Earnings</a>
+    
+    <div class="nav-item-wrapper" (mouseenter)="openFlyout('aumReports', $event)" (mouseleave)="closeFlyout()">
+      <a routerLink="/aum-reports" routerLinkActive="active" class="nav-item">
+        <span class="icon">📊</span> My AUM Reports
+      </a>
+      <div class="flyout-menu" *ngIf="hoveredMenu === 'aumReports'" [style.top.px]="flyoutTop">
+        <a routerLink="/aum/fund-house" class="flyout-item">AUM by Fund House</a>
+        <a routerLink="/aum/scheme-name" class="flyout-item">AUM by Scheme Name</a>
+        <a routerLink="/aum/client" class="flyout-item">AUM by Client</a>
+        <a routerLink="/aum/families" class="flyout-item">AUM by Families</a>
+        <a routerLink="/aum/registrar" class="flyout-item">AUM by Registrar</a>
+        <a routerLink="/aum/asset-category" class="flyout-item">AUM by Asset Category</a>
+        <a routerLink="/aum/combo" class="flyout-item">AUM (Combo of Family & Ind.)</a>
+      </div>
+    </div>
+
+    <div class="nav-item-wrapper" (mouseenter)="openFlyout('sipReports', $event)" (mouseleave)="closeFlyout()">
+      <a routerLink="/sip-reports" routerLinkActive="active" class="nav-item">
+        <span class="icon">↗</span> My SIPs Reports
+      </a>
+      <div class="flyout-menu" *ngIf="hoveredMenu === 'sipReports'" [style.top.px]="flyoutTop">
+        <a routerLink="/sip/fund-house" class="flyout-item">SIPs by Fund House</a>
+        <a routerLink="/sip/scheme-name" class="flyout-item">SIPs by Scheme Name</a>
+        <a routerLink="/sip/client" class="flyout-item">SIPs by Client</a>
+        <a routerLink="/sip/families" class="flyout-item">SIPs by Families</a>
+        <a routerLink="/sip/registrar" class="flyout-item">SIPs by Registrar</a>
+        <a routerLink="/sip/assets" class="flyout-item">SIPs by Assets</a>
+        <a routerLink="/sip/expired" class="flyout-item">Expired SIP Report</a>
+        <a routerLink="/sip/expiring-shortly" class="flyout-item">SIP Expiring Shortly</a>
+        <a routerLink="/sip/procurement" class="flyout-item">New SIP Procurement</a>
+        <a routerLink="/sip/combo" class="flyout-item">SIPs (Combo of Family & Ind.)</a>
+      </div>
+    </div>
+
+    <div class="nav-item-wrapper" (mouseenter)="openFlyout('stpReports', $event)" (mouseleave)="closeFlyout()">
+      <a routerLink="/stp-reports" routerLinkActive="active" class="nav-item">
+        <span class="icon">⇄</span> My STPs Reports
+      </a>
+      <div class="flyout-menu" *ngIf="hoveredMenu === 'stpReports'" [style.top.px]="flyoutTop">
+        <a routerLink="/stp/fund-house" class="flyout-item">STPs by Fund House</a>
+        <a routerLink="/stp/scheme-name" class="flyout-item">STPs by Scheme Name</a>
+        <a routerLink="/stp/client" class="flyout-item">STPs by Client</a>
+        <a routerLink="/stp/families" class="flyout-item">STPs by Families</a>
+      </div>
+    </div>
+
+    <div class="nav-item-wrapper" (mouseenter)="openFlyout('swpReports', $event)" (mouseleave)="closeFlyout()">
+      <a routerLink="/swp-reports" routerLinkActive="active" class="nav-item">
+        <span class="icon">↤</span> My SWPs Reports
+      </a>
+      <div class="flyout-menu" *ngIf="hoveredMenu === 'swpReports'" [style.top.px]="flyoutTop">
+        <a routerLink="/swp/fund-house" class="flyout-item">SWPs by Fund House</a>
+        <a routerLink="/swp/scheme-name" class="flyout-item">SWPs by Scheme Name</a>
+        <a routerLink="/swp/client" class="flyout-item">SWPs by Client</a>
+        <a routerLink="/swp/families" class="flyout-item">SWPs by Families</a>
+      </div>
+    </div>
+
+    <a href="#" class="nav-item"><span class="icon">🧮</span> Gain / Loss Simulator</a>
+    <a href="#" class="nav-item"><span class="icon">₹</span> Capital Gain Reports</a>
+    <a href="#" class="nav-item"><span class="icon">⚓</span> Dividend Reports</a>
+    <a href="#" class="nav-item"><span class="icon">📑</span> Transaction Reports</a>
+
+    <div class="nav-item-wrapper" (mouseenter)="openFlyout('transactionSlips', $event)" (mouseleave)="closeFlyout()">
+      <a routerLink="/transaction-slips" routerLinkActive="active" class="nav-item">
+        <span class="icon">📝</span> Pre-Filled Transaction Slips
+      </a>
+      <div class="flyout-menu" *ngIf="hoveredMenu === 'transactionSlips'" [style.top.px]="flyoutTop">
+        <a routerLink="/slips/redemption" class="flyout-item">Redemption Slips</a>
+        <a routerLink="/slips/additional-purchase" class="flyout-item">Add. Purchase Slips</a>
+        <a routerLink="/slips/switch" class="flyout-item">Switch Slips</a>
+        <a routerLink="/slips/sip-cancellation" class="flyout-item">SIP Cancellation Slips</a>
+        <a routerLink="/slips/stp-cancellation" class="flyout-item">STP Cancellation Slips</a>
+      </div>
+    </div>
+    <a href="#" class="nav-item"><span class="icon">🧰</span> Forms & Daily Needs</a>
+    <a href="#" class="nav-item"><span class="icon">🖩</span> Calculators</a>
+    <a href="#" class="nav-item"><span class="icon">🔔</span> Help Center</a>
+    <a href="#" class="nav-item"><span class="icon">✉</span> Mailback Management</a>
+
+  </nav>
+
+</aside>
+
+<div class="modal-overlay" *ngIf="isInviteModalOpen">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3>Invite Friend</h3>
+      <button class="close-btn" (click)="closeInviteModal()">×</button>
+    </div>
+    
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Friend Name <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>Mobile Number <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>ARN Number <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" />
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-close" (click)="closeInviteModal()">Close</button>
+      <button class="btn-invite">Invite</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="page-container">
+  
+  <div class="page-header">
+    <h2 class="page-title">Reward Points</h2>
+    <div class="breadcrumb-container">
+      <div class="breadcrumb">
+        <span class="home-icon">🏠</span> Home <span class="separator">›</span> Reward Points
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">⏱</span> Reward Points
+    </div>
+    
+    <div class="card-body">
+      
+      <div class="table-controls">
+        <div class="search-box">
+          <label>Search: <input type="text" class="search-input"></label>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>
+                <div class="header-content">Sr <div class="sort-arrows"><span>▴</span><span>▾</span></div></div>
+              </th>
+              <th>
+                <div class="header-content">Date <div class="sort-arrows"><span>▴</span><span>▾</span></div></div>
+              </th>
+              <th>
+                <div class="header-content">Referral Name <div class="sort-arrows"><span>▴</span><span>▾</span></div></div>
+              </th>
+              <th>
+                <div class="header-content">Points Credited <div class="sort-arrows"><span>▴</span><span>▾</span></div></div>
+              </th>
+              <th>
+                <div class="header-content">Points Debited <div class="sort-arrows"><span>▴</span><span>▾</span></div></div>
+              </th>
+              <th>
+                <div class="header-content">Points Balance <div class="sort-arrows"><span>▴</span><span>▾</span></div></div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="rewards.length === 0">
+              <td colspan="6" class="text-center no-data-message">No data available in table</td>
+            </tr>
+
+            <tr *ngFor="let reward of rewards">
+              <td class="text-center">{{ reward.sr }}</td>
+              <td class="text-center">{{ reward.date }}</td>
+              <td>{{ reward.name }}</td>
+              <td class="text-center">{{ reward.credited }}</td>
+              <td class="text-center">{{ reward.debited }}</td>
+              <td class="text-center">{{ reward.balance }}</td>
+            </tr>
+
+            <tr class="total-row">
+              <td colspan="3" class="text-center">Total</td>
+              <td class="text-center">{{ totalCredited }}</td>
+              <td class="text-center">{{ totalDebited }}</td>
+              <td class="text-center">{{ totalBalance }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-footer">
+        <div class="showing-info">Showing {{ rewards.length ? '1' : '0' }} to {{ rewards.length }} of {{ rewards.length }} entries</div>
+        <div class="pagination">
+          <button class="page-btn disabled">‹</button>
+          <button class="page-btn disabled">›</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

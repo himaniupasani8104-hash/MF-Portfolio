@@ -1,0 +1,82 @@
+<div class="page-container">
+  
+  <div class="page-header">
+    <h2 class="page-title">My Referral List</h2>
+    <div class="breadcrumb-container">
+      <div class="breadcrumb">
+        <span class="home-icon">🏠</span> Home <span class="separator">›</span> My Referral List
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="icon">⏱</span> My Referral List
+    </div>
+    
+    <div class="card-body">
+      
+      <div class="table-controls">
+        <div class="search-box">
+          <label>Search: <input type="text" class="search-input"></label>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>
+                <div class="header-content">Sr <div class="sort-arrows"><span>▴</span><span>▾</span></div></div>
+              </th>
+              <th>
+                <div class="header-content">Friend Name <div class="sort-arrows"><span>▴</span><span>▾</span></div></div>
+              </th>
+              <th>
+                <div class="header-content">ARN Number <div class="sort-arrows"><span>▴</span><span>▾</span></div></div>
+              </th>
+              <th>
+                <div class="header-content">Mobile <div class="sort-arrows"><span>▴</span><span>▾</span></div></div>
+              </th>
+              <th>
+                <div class="header-content">Email <div class="sort-arrows"><span>▴</span><span>▾</span></div></div>
+              </th>
+              <th>
+                <div class="header-content">Invitation Date <div class="sort-arrows"><span>▴</span><span>▾</span></div></div>
+              </th>
+              <th>
+                <div class="header-content">Expire Date <div class="sort-arrows"><span>▴</span><span>▾</span></div></div>
+              </th>
+              <th>
+                <div class="header-content">Status <div class="sort-arrows"><span>▴</span><span>▾</span></div></div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ref of referrals">
+              <td class="text-center">{{ ref.sr }}</td>
+              <td class="text-center">{{ ref.name }}</td>
+              <td class="text-center">{{ ref.arn }}</td>
+              <td class="text-center">{{ ref.mobile }}</td>
+              <td>{{ ref.email }}</td>
+              <td class="text-center">{{ ref.invitationDate }}</td>
+              <td class="text-center">{{ ref.expireDate }}</td>
+              <td class="text-center">{{ ref.status }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-footer">
+        <div class="showing-info">Showing 1 to 1 of 1 entries</div>
+        <div class="pagination">
+          <button class="page-btn disabled">‹</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn disabled">›</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

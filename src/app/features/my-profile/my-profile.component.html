@@ -1,0 +1,825 @@
+<!-- <section class="profile-page">
+  <div class="page-title">
+    <h2>Dashboard <span>reports &amp; statistics</span></h2>
+  </div>
+
+  <div class="breadcrumb">
+    🏠 Home <span>›</span> My Profile
+  </div>
+
+  <div class="profile-card">
+    <div class="profile-card-header">
+      ⚙ Update Your Profile - Step {{ currentStep }} of 4
+    </div>
+
+    <div class="steps">
+      <div class="step" [ngClass]="{'active': currentStep === 1, 'completed': currentStep > 1}">
+        <span *ngIf="currentStep === 1">1</span>
+        <span *ngIf="currentStep > 1" class="check-icon">✓</span>
+        <p>Basic Details</p>
+      </div>
+
+      <div class="step" [ngClass]="{'active-teal': currentStep === 2, 'completed': currentStep > 2}">
+        <span *ngIf="currentStep <= 2">2</span>
+        <span *ngIf="currentStep > 2" class="check-icon">✓</span>
+        <p>Licence &amp; Mailback Details</p>
+      </div>
+
+      <div class="step" [ngClass]="{'active-teal': currentStep === 3, 'completed': currentStep > 3}">
+        <span *ngIf="currentStep <= 3">3</span>
+        <span *ngIf="currentStep > 3" class="check-icon">✓</span>
+        <p>My Billing Details</p>
+      </div>
+
+      <div class="step" [ngClass]="{'active': currentStep === 4 && !isSubmitted, 'completed': isSubmitted}">
+        <span *ngIf="!isSubmitted">4</span>
+        <span *ngIf="isSubmitted" class="check-icon">✓</span>
+        <p>Other Settings</p>
+      </div>
+    </div>
+
+    <div *ngIf="currentStep > 1 && currentStep < 4" class="progress-bar-container">
+      <div class="progress-bar-fill" [style.width.%]="currentStep === 2 ? 50 : (currentStep === 3 ? 75 : 100)"></div>
+    </div>
+
+    <form class="profile-form">
+      
+      <ng-container *ngIf="currentStep === 1">
+        <div class="form-row">
+          <label>Advisor Name <b>*</b></label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.advisorName" name="advisorName" class="main-input">
+            <label class="radio-label">
+              <input type="radio" name="advisorDefault" checked> Default
+            </label>
+            <button type="button" class="blue-btn">Add More Name</button>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Firm Name (if any)</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.firmName" name="firmName" class="wide">
+          </div>
+        </div>
+        <div class="form-row align-top">
+          <label>Office Address</label>
+          <div class="form-controls">
+            <textarea [(ngModel)]="profile.officeAddress" name="officeAddress" class="wide textarea"></textarea>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>City</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.city" name="city" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>State</label>
+          <div class="form-controls">
+            <select [(ngModel)]="profile.state" name="state" class="wide">
+              <option>Maharashtra</option>
+              <option>Gujarat</option>
+              <option>Delhi</option>
+              <option>Karnataka</option>
+              <option>Tamil Nadu</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Phone</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.phone" name="phone" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Mobile <b>*</b></label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.mobile" name="mobile" class="main-input">
+            <label class="radio-label">
+              <input type="radio" name="mobileDefault" checked> Default
+            </label>
+            <button type="button" class="blue-btn">Add More Phone/Mobile</button>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Email <b>*</b></label>
+          <div class="form-controls">
+            <input type="email" [(ngModel)]="profile.email" name="email" class="main-input">
+            <label class="radio-label">
+              <input type="radio" name="emailDefault" checked> Default
+            </label>
+            <button type="button" class="blue-btn">Add More Emails</button>
+          </div>
+        </div>
+        <div class="form-row align-top">
+          <label>Logo For Whatsapp Marketing</label>
+          <div class="form-controls upload-controls">
+            <div class="file-input-wrapper">
+              <input type="file" class="file-input">
+              <small>Recommended Size : 530 (W) X 100 (H)</small>
+            </div>
+          </div>
+        </div>
+        <div class="form-row align-top">
+          <label>Residential Address</label>
+          <div class="form-controls">
+            <textarea [(ngModel)]="profile.residentialAddress" name="residentialAddress" class="wide textarea"></textarea>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Website URL</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.websiteUrl" name="websiteUrl" class="wide">
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentStep === 2">
+        <div class="form-row">
+          <label>Arn Number</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.arnNumber" name="arnNumber" class="main-input readonly-input" readonly>
+            <label class="radio-label">
+              <input type="radio" name="arnDefault" checked> Default
+            </label>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Name of the ARN Holder</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.arnHolderName" name="arnHolderName" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Date of Birth</label>
+          <div class="form-controls">
+            <input type="date" [(ngModel)]="profile.dob" name="dob" class="date-input">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>ARN Expiring on</label>
+          <div class="form-controls">
+            <input type="date" [(ngModel)]="profile.arnExpiry" name="arnExpiry" class="date-input">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>EUIN</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.euin" name="euin" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Cams Registered Mail ID</label>
+          <div class="form-controls">
+            <input type="email" [(ngModel)]="profile.camsMailId" name="camsMailId" class="wide readonly-input" readonly>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Karvy Registered Mail ID</label>
+          <div class="form-controls">
+            <input type="email" [(ngModel)]="profile.karvyMailId" name="karvyMailId" class="wide readonly-input" readonly>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Cams Fundsnet ID</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.camsFundsnetId" name="camsFundsnetId" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Cams Fundsnet Password</label>
+          <div class="form-controls input-icon-wrapper">
+            <input type="password" [(ngModel)]="profile.camsFundsnetPassword" name="camsFundsnetPassword" class="wide">
+            <span class="input-icon">👁</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>ARN PAN</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.arnPan" name="arnPan" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>ARN Address</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.arnAddress" name="arnAddress" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>GST No</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.gstNo" name="gstNo" class="wide">
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentStep === 3">
+        <div class="form-row">
+          <label>Billing Name</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.billingName" name="billingName" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Billing Address</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.billingAddress" name="billingAddress" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>GST Number</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.billingGst" name="billingGst" placeholder="Optional" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>City</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.billingCity" name="billingCity" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Pincode</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.billingPincode" name="billingPincode" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>State</label>
+          <div class="form-controls">
+            <select [(ngModel)]="profile.billingState" name="billingState" class="wide">
+              <option>Maharashtra</option>
+              <option>Gujarat</option>
+              <option>Delhi</option>
+              <option>Karnataka</option>
+              <option>Tamil Nadu</option>
+            </select>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentStep === 4">
+        <div class="form-row">
+          <label>Client Default Password</label>
+          <div class="form-controls form-inline-group">
+            <input type="text" [(ngModel)]="profile.clientDefaultPassword" name="clientDefaultPassword" class="main-input">
+            <span class="hint-text">Type Password</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label>SMS Suffix</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.smsSuffix" name="smsSuffix" class="wide">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label>Google Play Store Link</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.playStoreLink" name="playStoreLink" class="wide">
+          </div>
+        </div>
+
+        <div class="form-row align-top">
+          <label>Email Signature</label>
+          <div class="form-controls">
+            <textarea [(ngModel)]="profile.emailSignature" name="emailSignature" class="wide textarea rich-textarea"></textarea>
+          </div>
+        </div>
+
+        <div class="form-row align-top">
+          <label>Email Disclaimer</label>
+          <div class="form-controls">
+            <textarea [(ngModel)]="profile.emailDisclaimer" name="emailDisclaimer" class="wide textarea"></textarea>
+          </div>
+        </div>
+
+        <div class="form-row align-top">
+          <label>PDF Disclaimer</label>
+          <div class="form-controls">
+            <textarea [(ngModel)]="profile.pdfDisclaimer" name="pdfDisclaimer" class="wide textarea"></textarea>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label>Firm Title</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.firmTitle" name="firmTitle" class="wide">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label>Firm Sub Title</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.firmSubTitle" name="firmSubTitle" class="wide" placeholder="Firm Title and Firm Subtitle combine length should not be more than 25 characters">
+          </div>
+        </div>
+
+        <div class="form-row multi-select-row">
+          <div class="select-group">
+            <label>Preferred Columns</label>
+            <select [(ngModel)]="profile.preferredColumns" name="preferredColumns" class="standard-select">
+              <option value="17">17 selected</option>
+              <option value="18">18 selected</option>
+            </select>
+          </div>
+          <div class="select-group right-align-group">
+            <label>Whatsapp Language</label>
+            <select [(ngModel)]="profile.whatsappLanguage" name="whatsappLanguage" class="standard-select">
+              <option value="English">English</option>
+              <option value="Hindi">Hindi</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="checkbox-grid-section">
+          <div class="checkbox-column">
+            <label class="custom-checkbox">
+              <span class="label-text">Show Key Figures on Dashboard</span>
+              <input type="checkbox" [(ngModel)]="profile.showKeyFigures" name="showKeyFigures">
+            </label>
+            
+            <label class="custom-checkbox">
+              <span class="label-text">Client Login Email Notification</span>
+              <input type="checkbox" [(ngModel)]="profile.clientLoginNotification" name="clientLoginNotification">
+            </label>
+
+            <label class="custom-checkbox">
+              <span class="label-text">Enable Trxn. Movement Popup</span>
+              <input type="checkbox" [(ngModel)]="profile.enableTrxnMovementPopup" name="enableTrxnMovementPopup">
+            </label>
+
+            <label class="custom-checkbox">
+              <span class="label-text">Enable SMS to Clients</span>
+              <input type="checkbox" [(ngModel)]="profile.enableSmsToClients" name="enableSmsToClients">
+            </label>
+
+            <label class="custom-checkbox">
+              <span class="label-text">Always BCC the Valuation report to me</span>
+              <input type="checkbox" [(ngModel)]="profile.alwaysBccValuation" name="alwaysBccValuation">
+            </label>
+
+            <label class="custom-checkbox">
+              <span class="label-text">Enable Watermark on PDF Reporting</span>
+              <input type="checkbox" [(ngModel)]="profile.enableWatermarkPdf" name="enableWatermarkPdf">
+            </label>
+
+            <label class="custom-checkbox">
+              <span class="label-text">Enable Mailer for Daily Bday/Anniversary List</span>
+              <input type="checkbox" [(ngModel)]="profile.enableMailerBday" name="enableMailerBday">
+            </label>
+          </div>
+
+          <div class="checkbox-column">
+             <label class="custom-checkbox spacer-box"></label>
+            <label class="custom-checkbox spacer-box"></label>
+
+            <label class="custom-checkbox">
+              <span class="label-text">Enable DivP / DivR in Valuation Report</span>
+              <input type="checkbox" [(ngModel)]="profile.enableDivP" name="enableDivP">
+            </label>
+
+            <label class="custom-checkbox">
+              <span class="label-text">Enable Logo for PDF Reporting</span>
+              <input type="checkbox" [(ngModel)]="profile.enableLogoPdfReporting" name="enableLogoPdfReporting">
+            </label>
+
+            <label class="custom-checkbox">
+              <span class="label-text">R&amp;T's Profile Data as Default</span>
+              <input type="checkbox" [(ngModel)]="profile.rtProfileDataDefault" name="rtProfileDataDefault">
+            </label>
+
+            <label class="custom-checkbox">
+              <span class="label-text">Sender as Advisor's default mail</span>
+              <input type="checkbox" [(ngModel)]="profile.senderAdvisorDefault" name="senderAdvisorDefault">
+            </label>
+          </div>
+        </div>
+
+      </ng-container>
+
+    </form>
+
+    <div class="form-footer" [ngClass]="{'footer-centered': currentStep === 4}">
+      <button *ngIf="currentStep > 1" type="button" class="back-btn" (click)="backProfile()">⨠ Back</button>
+      <button *ngIf="currentStep < 4" type="button" class="continue-btn" (click)="continueProfile()">Continue ➜</button>
+      
+      <button *ngIf="currentStep > 1 && currentStep < 4" type="button" class="save-btn" (click)="saveProfile()">Save ➜</button>
+      <button *ngIf="currentStep === 4" type="button" class="submit-btn" (click)="submitProfile()">Submit ➜</button>
+    </div>
+  </div>
+</section> -->
+
+<section class="profile-page">
+  <div class="page-title">
+    <h2>Dashboard <span>reports &amp; statistics</span></h2>
+  </div>
+
+  <div class="breadcrumb">
+    🏠 Home <span>›</span> My Profile
+  </div>
+
+  <div class="profile-card">
+    <div class="profile-card-header">
+      ⚙ Update Your Profile - Step {{ currentStep }} of 4
+    </div>
+
+    <div class="steps">
+      <div class="step" [ngClass]="{'active': currentStep === 1, 'completed': currentStep > 1}">
+        <span *ngIf="currentStep === 1">1</span>
+        <span *ngIf="currentStep > 1" class="check-icon">✓</span>
+        <p>Basic Details</p>
+      </div>
+
+      <div class="step" [ngClass]="{'active-teal': currentStep === 2, 'completed': currentStep > 2}">
+        <span *ngIf="currentStep <= 2">2</span>
+        <span *ngIf="currentStep > 2" class="check-icon">✓</span>
+        <p>Licence &amp; Mailback Details</p>
+      </div>
+
+      <div class="step" [ngClass]="{'active-teal': currentStep === 3, 'completed': currentStep > 3}">
+        <span *ngIf="currentStep <= 3">3</span>
+        <span *ngIf="currentStep > 3" class="check-icon">✓</span>
+        <p>My Billing Details</p>
+      </div>
+
+      <div class="step" [ngClass]="{'active': currentStep === 4 && !isSubmitted, 'completed': isSubmitted}">
+        <span *ngIf="!isSubmitted">4</span>
+        <span *ngIf="isSubmitted" class="check-icon">✓</span>
+        <p>Other Settings</p>
+      </div>
+    </div>
+
+    <div *ngIf="currentStep > 1 && currentStep < 4" class="progress-bar-container">
+      <div class="progress-bar-fill" [style.width.%]="currentStep === 2 ? 50 : (currentStep === 3 ? 75 : 100)"></div>
+    </div>
+
+    <form class="profile-form">
+      
+      <ng-container *ngIf="currentStep === 1">
+        <div class="form-row">
+          <label>Advisor Name <b>*</b></label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.advisorName" name="advisorName" class="main-input">
+            <label class="radio-label">
+              <input type="radio" name="advisorDefault" checked> Default
+            </label>
+            <button type="button" class="blue-btn">Add More Name</button>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Firm Name (if any)</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.firmName" name="firmName" class="wide">
+          </div>
+        </div>
+        <div class="form-row align-top">
+          <label>Office Address</label>
+          <div class="form-controls">
+            <textarea [(ngModel)]="profile.officeAddress" name="officeAddress" class="wide textarea"></textarea>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>City</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.city" name="city" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>State</label>
+          <div class="form-controls">
+            <select [(ngModel)]="profile.state" name="state" class="wide">
+              <option>Maharashtra</option>
+              <option>Gujarat</option>
+              <option>Delhi</option>
+              <option>Karnataka</option>
+              <option>Tamil Nadu</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Phone</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.phone" name="phone" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Mobile <b>*</b></label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.mobile" name="mobile" class="main-input">
+            <label class="radio-label">
+              <input type="radio" name="mobileDefault" checked> Default
+            </label>
+            <button type="button" class="blue-btn">Add More Phone/Mobile</button>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Email <b>*</b></label>
+          <div class="form-controls">
+            <input type="email" [(ngModel)]="profile.email" name="email" class="main-input">
+            <label class="radio-label">
+              <input type="radio" name="emailDefault" checked> Default
+            </label>
+            <button type="button" class="blue-btn">Add More Emails</button>
+          </div>
+        </div>
+        <div class="form-row align-top">
+          <label>Logo For Whatsapp Marketing</label>
+          <div class="form-controls upload-controls">
+            <div class="file-input-wrapper">
+              <input type="file" class="file-input">
+              <small>Recommended Size : 530 (W) X 100 (H)</small>
+            </div>
+          </div>
+        </div>
+        <div class="form-row align-top">
+          <label>Residential Address</label>
+          <div class="form-controls">
+            <textarea [(ngModel)]="profile.residentialAddress" name="residentialAddress" class="wide textarea"></textarea>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Website URL</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.websiteUrl" name="websiteUrl" class="wide">
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentStep === 2">
+        <div class="form-row">
+          <label>Arn Number</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.arnNumber" name="arnNumber" class="main-input readonly-input" readonly>
+            <label class="radio-label">
+              <input type="radio" name="arnDefault" checked> Default
+            </label>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Name of the ARN Holder</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.arnHolderName" name="arnHolderName" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Date of Birth</label>
+          <div class="form-controls">
+            <input type="date" [(ngModel)]="profile.dob" name="dob" class="date-input">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>ARN Expiring on</label>
+          <div class="form-controls">
+            <input type="date" [(ngModel)]="profile.arnExpiry" name="arnExpiry" class="date-input">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>EUIN</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.euin" name="euin" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Cams Registered Mail ID</label>
+          <div class="form-controls">
+            <input type="email" [(ngModel)]="profile.camsMailId" name="camsMailId" class="wide readonly-input" readonly>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Karvy Registered Mail ID</label>
+          <div class="form-controls">
+            <input type="email" [(ngModel)]="profile.karvyMailId" name="karvyMailId" class="wide readonly-input" readonly>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Cams Fundsnet ID</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.camsFundsnetId" name="camsFundsnetId" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Cams Fundsnet Password</label>
+          <div class="form-controls input-icon-wrapper">
+            <input type="password" [(ngModel)]="profile.camsFundsnetPassword" name="camsFundsnetPassword" class="wide">
+            <span class="input-icon">👁</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>ARN PAN</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.arnPan" name="arnPan" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>ARN Address</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.arnAddress" name="arnAddress" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>GST No</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.gstNo" name="gstNo" class="wide">
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentStep === 3">
+        <div class="form-row">
+          <label>Billing Name</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.billingName" name="billingName" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Billing Address</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.billingAddress" name="billingAddress" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>GST Number</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.billingGst" name="billingGst" placeholder="Optional" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>City</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.billingCity" name="billingCity" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Pincode</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.billingPincode" name="billingPincode" class="wide">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>State</label>
+          <div class="form-controls">
+            <select [(ngModel)]="profile.billingState" name="billingState" class="wide">
+              <option>Maharashtra</option>
+              <option>Gujarat</option>
+              <option>Delhi</option>
+              <option>Karnataka</option>
+              <option>Tamil Nadu</option>
+            </select>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentStep === 4">
+        <div class="form-row">
+          <label>Client Default Password</label>
+          <div class="form-controls form-inline-group">
+            <input type="text" [(ngModel)]="profile.clientDefaultPassword" name="clientDefaultPassword" class="main-input">
+            <span class="hint-text">Type Password</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label>SMS Suffix</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.smsSuffix" name="smsSuffix" class="wide">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label>Google Play Store Link</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.playStoreLink" name="playStoreLink" class="wide">
+          </div>
+        </div>
+
+        <div class="form-row align-top">
+          <label>Email Signature</label>
+          <div class="form-controls">
+            <textarea [(ngModel)]="profile.emailSignature" name="emailSignature" class="wide textarea rich-textarea"></textarea>
+          </div>
+        </div>
+
+        <div class="form-row align-top">
+          <label>Email Disclaimer</label>
+          <div class="form-controls">
+            <textarea [(ngModel)]="profile.emailDisclaimer" name="emailDisclaimer" class="wide textarea"></textarea>
+          </div>
+        </div>
+
+        <div class="form-row align-top">
+          <label>PDF Disclaimer</label>
+          <div class="form-controls">
+            <textarea [(ngModel)]="profile.pdfDisclaimer" name="pdfDisclaimer" class="wide textarea"></textarea>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label>Firm Title</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.firmTitle" name="firmTitle" class="wide">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label>Firm Sub Title</label>
+          <div class="form-controls">
+            <input type="text" [(ngModel)]="profile.firmSubTitle" name="firmSubTitle" class="wide" placeholder="Firm Title and Firm Subtitle combine length should not be more than 25 characters">
+          </div>
+        </div>
+
+        <div class="form-row multi-select-row">
+          <div class="select-group">
+            <label>Preferred Columns</label>
+            <select [(ngModel)]="profile.preferredColumns" name="preferredColumns" class="standard-select">
+              <option value="17">17 selected</option>
+              <option value="18">18 selected</option>
+            </select>
+          </div>
+          <div class="select-group right-align-group">
+            <label>Whatsapp Language</label>
+            <select [(ngModel)]="profile.whatsappLanguage" name="whatsappLanguage" class="standard-select">
+              <option value="English">English</option>
+              <option value="Hindi">Hindi</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="checkbox-grid-section">
+          <div class="checkbox-column">
+            <label class="custom-checkbox">
+              <span class="label-text">Show Key Figures on Dashboard</span>
+              <input type="checkbox" [(ngModel)]="profile.showKeyFigures" name="showKeyFigures">
+            </label>
+            
+            <label class="custom-checkbox">
+              <span class="label-text">Client Login Email Notification</span>
+              <input type="checkbox" [(ngModel)]="profile.clientLoginNotification" name="clientLoginNotification">
+            </label>
+
+            <label class="custom-checkbox">
+              <span class="label-text">Enable Trxn. Movement Popup</span>
+              <input type="checkbox" [(ngModel)]="profile.enableTrxnMovementPopup" name="enableTrxnMovementPopup">
+            </label>
+
+            <label class="custom-checkbox">
+              <span class="label-text">Enable SMS to Clients</span>
+              <input type="checkbox" [(ngModel)]="profile.enableSmsToClients" name="enableSmsToClients">
+            </label>
+
+            <label class="custom-checkbox">
+              <span class="label-text">Always BCC the Valuation report to me</span>
+              <input type="checkbox" [(ngModel)]="profile.alwaysBccValuation" name="alwaysBccValuation">
+            </label>
+
+            <label class="custom-checkbox">
+              <span class="label-text">Enable Watermark on PDF Reporting</span>
+              <input type="checkbox" [(ngModel)]="profile.enableWatermarkPdf" name="enableWatermarkPdf">
+            </label>
+
+            <label class="custom-checkbox">
+              <span class="label-text">Enable Mailer for Daily Bday/Anniversary List</span>
+              <input type="checkbox" [(ngModel)]="profile.enableMailerBday" name="enableMailerBday">
+            </label>
+          </div>
+
+          <div class="checkbox-column">
+             <label class="custom-checkbox spacer-box"></label>
+            <label class="custom-checkbox spacer-box"></label>
+
+            <label class="custom-checkbox">
+              <span class="label-text">Enable DivP / DivR in Valuation Report</span>
+              <input type="checkbox" [(ngModel)]="profile.enableDivP" name="enableDivP">
+            </label>
+
+            <label class="custom-checkbox">
+              <span class="label-text">Enable Logo for PDF Reporting</span>
+              <input type="checkbox" [(ngModel)]="profile.enableLogoPdfReporting" name="enableLogoPdfReporting">
+            </label>
+
+            <label class="custom-checkbox">
+              <span class="label-text">R&amp;T's Profile Data as Default</span>
+              <input type="checkbox" [(ngModel)]="profile.rtProfileDataDefault" name="rtProfileDataDefault">
+            </label>
+
+            <label class="custom-checkbox">
+              <span class="label-text">Sender as Advisor's default mail</span>
+              <input type="checkbox" [(ngModel)]="profile.senderAdvisorDefault" name="senderAdvisorDefault">
+            </label>
+          </div>
+        </div>
+
+      </ng-container>
+
+    </form>
+
+    <div class="form-footer" [ngClass]="{'footer-centered': currentStep === 4}">
+      <button *ngIf="currentStep > 1" type="button" class="back-btn" (click)="backProfile()">⨠ Back</button>
+      <button *ngIf="currentStep < 4" type="button" class="continue-btn" (click)="continueProfile()">Continue ➜</button>
+      
+      <button *ngIf="currentStep > 1 && currentStep < 4" type="button" class="save-btn" (click)="saveProfile()">Save ➜</button>
+      <button *ngIf="currentStep === 4" type="button" class="submit-btn" (click)="submitProfile()">Submit ➜</button>
+    </div>
+  </div>
+</section>
