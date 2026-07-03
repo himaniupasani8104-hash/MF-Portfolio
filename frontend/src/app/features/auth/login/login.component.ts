@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; 
-import { Router, RouterModule } from '@angular/router'; 
-import { FormsModule } from '@angular/forms'; 
+import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,31 +12,47 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  
-  // Starting empty so you actually have to type it!
-  emailModel: string = ''; 
-  passwordModel: string = '';
-  rememberMe: boolean = false;
-  isPasswordVisible: boolean = false;
-  
-  // New variable to hold our error message
-  errorMessage: string = ''; 
 
-  // Hardcoded credentials for testing
-  private readonly VALID_EMAIL = 'admin@example.com';
-  private readonly VALID_PASS = 'Admin123';
+  emailModel = '';
+  passwordModel = '';
+  rememberMe = false;
+  isPasswordVisible = false;
+  errorMessage = '';
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   onSignIn() {
-    // Check if the inputs match our hardcoded values
-    if (this.emailModel === this.VALID_EMAIL && this.passwordModel === this.VALID_PASS) {
-      // Success! Clear any errors and navigate
-      this.errorMessage = '';
-      this.router.navigate(['/dashboard']);
-    } else {
-      // Fail! Show an error message on the screen
-      this.errorMessage = 'Incorrect email or password. Please try again.';
-    }
+
+    const loginData = {
+      email: this.emailModel,
+      password: this.passwordModel
+    };
+
+    this.authService.login(loginData).subscribe({
+
+      next: (res: any) => {
+
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('user', JSON.stringify(res.user));
+
+        this.errorMessage = '';
+
+        this.router.navigate(['/dashboard']);
+
+      },
+
+      error: (err: any) => {
+
+        this.errorMessage =
+          err.error.message || 'Incorrect email or password.';
+
+      }
+
+    });
+
   }
+
 }
